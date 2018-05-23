@@ -43,8 +43,22 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function (card) {
-    var a = $(card.currentTarget).attr("name");
-    console.log(a);
+    if ($(this).hasClass('back')) {
+      $(this.parentElement.children[0]).removeClass('back');
+      $(this.parentElement.children[0]).addClass('front');
+      $(this.parentElement.children[1]).removeClass('front');
+      $(this.parentElement.children[1]).addClass('back');
+
+    }
+    else {
+      $(this.parentElement.children[0]).removeClass('front');
+      $(this.parentElement.children[0]).addClass('back');
+      $(this.parentElement.children[1]).removeClass('back');
+      $(this.parentElement.children[1]).addClass('front');
+    }
+
+    
+
   }); 
 });
 
