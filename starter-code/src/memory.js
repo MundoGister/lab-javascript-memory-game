@@ -1,5 +1,6 @@
 var MemoryGame = function (cards) {
     this.cards = cards;
+    // Card seleccionadas
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
@@ -26,6 +27,6 @@ MemoryGame.prototype.checkIfPair = function (firstCard, secondCard) {
     }
 };
 
-// MemoryGame.prototype.finished = function () {
-
-// };
+MemoryGame.prototype.finished = function () {
+    alert("Has ganado");
+};

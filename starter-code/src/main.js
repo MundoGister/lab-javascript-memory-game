@@ -43,19 +43,37 @@ $(document).ready(function(){
   document.getElementById('memory_board').innerHTML = html;
   // Bind the click event of each element to a function
   $('.back').on('click', function (card) {
-    if ($(this).hasClass('back')) {
-      $(this.parentElement.children[0]).removeClass('back');
-      $(this.parentElement.children[0]).addClass('front');
-      $(this.parentElement.children[1]).removeClass('front');
-      $(this.parentElement.children[1]).addClass('back');
+    memoryGame.pickedCards.push(card);
+    if (memoryGame.pickedCards.length < 2) {
+      if ($(this).hasClass('back')) {
+        $(this.parentElement.children[0]).removeClass('back');
+        $(this.parentElement.children[0]).addClass('front');
+        $(this.parentElement.children[1]).removeClass('front');
+        $(this.parentElement.children[1]).addClass('back');
 
+      }
     }
-    else {
-      $(this.parentElement.children[0]).removeClass('front');
-      $(this.parentElement.children[0]).addClass('back');
-      $(this.parentElement.children[1]).removeClass('back');
-      $(this.parentElement.children[1]).addClass('front');
+    else if (memoryGame.pickedCards.length === 2) {
+      if ($(this).hasClass('back')) {
+        $(this.parentElement.children[0]).removeClass('back');
+        $(this.parentElement.children[0]).addClass('front');
+        $(this.parentElement.children[1]).removeClass('front');
+        $(this.parentElement.children[1]).addClass('back');
+
+      }
+
+      var state = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1]);
+      $('#pairs_guessed').text(Number($('#pairs_guessed').text()) + 1);
+      if (state && memoryGame.pairsGuessed === memoryGame.cards.length / 2) {
+        memoryGame.finished();
+      }
     }
+    // else {
+    //   $(this.parentElement.children[0]).removeClass('front');
+    //   $(this.parentElement.children[0]).addClass('back');
+    //   $(this.parentElement.children[1]).removeClass('back');
+    //   $(this.parentElement.children[1]).addClass('front');
+    // }
 
     
 
